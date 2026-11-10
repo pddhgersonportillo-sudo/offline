@@ -1,0 +1,36 @@
+<!doctype html>
+<!--
+  Página puente opcional para el inicio de sesión de TikTok en OFFLINE.
+  Publícala en la dirección que registraste como Redirect URI (por ejemplo con GitHub Pages:
+  https://TU_USUARIO.github.io/offline/tiktok-callback.html) y usa esa misma URL en la app.
+  No procesa ni guarda nada: solo reenvía ?code=...&state=... a la app instalada.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Volver a OFFLINE</title>
+<style>
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0B0B0F;color:#F2F2F7;font-family:system-ui,sans-serif;text-align:center;padding:24px;box-sizing:border-box}
+  a{display:inline-block;margin-top:20px;padding:16px 28px;border-radius:14px;background:#7C5CFF;color:#fff;text-decoration:none;font-weight:600;font-size:18px}
+  p{color:#9A9AAE}
+</style>
+</head>
+<body>
+<div>
+  <h1>OFFLINE</h1>
+  <p id="msg">Autorización recibida. Toca el botón para volver a la app.</p>
+  <a id="go" href="#">Volver a OFFLINE</a>
+</div>
+<script>
+  var q = location.search || '';
+  var link = 'intent://tiktok-callback' + q + '#Intent;scheme=offline-app;package=com.offline.app;end';
+  document.getElementById('go').href = link;
+  if (!/[?&](code|error)=/.test(q)) {
+    document.getElementById('msg').textContent = 'Esta página solo se usa al conectar TikTok desde OFFLINE.';
+    document.getElementById('go').style.display = 'none';
+  }
+</script>
+</body>
+</html>
